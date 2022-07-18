@@ -1,11 +1,18 @@
-<?php
-require_once "./class/Crud.php";
- include("../templates/header.php"); 
+{% extends "layout.twig" %}
+{%block head %}  {{ parent() }}   {% endblock %}
 
-?>
 
-<h2>Client</h1>
-    <form action="ville-ajouter.php" method="post">
+
+
+{% block title %}Index{% endblock %}
+{% block header %}
+    {{ parent() }}
+    
+{% endblock %}
+{% block content %}
+{{ errors }}
+<h2> Ajouter une ville </h1>
+    <form action="../store" method="POST">
     <label for="name">Nom de la ville </label>
     <input type="text" id="nom" name="nom" maxlenght="30" value="Ajouter la ville ">
  
@@ -14,10 +21,12 @@ require_once "./class/Crud.php";
     </form>
     <hr>
 
-
-</body>
-
+{% endblock %}
 
 
-<?php include("../templates/footer.php"); ?>
-</html>
+{% block footer %}
+    {{ parent() }}
+    
+{% endblock %}
+
+

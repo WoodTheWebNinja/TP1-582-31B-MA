@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
         {% block head %}
@@ -7,6 +7,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="./css/style.css">
             <link rel="stylesheet" href="../css/style.css">
+            <link rel="stylesheet" href="../../css/style.css">
+            <link rel="stylesheet" href="../../../css/style.css">
+
+
     <title>Blog Bball Woodly Boursiquot </title>
             <title>{% block title %}{% endblock %} Blog Bball Woodly Boursiquot</title>
         {% endblock %}
@@ -14,13 +18,7 @@
 {% block header %}
 <header> 
         <nav class="navbar" >
-        <ul>
-        <li><a href="../index.php">Homepage</a></li>
-        <li><a href="view/team-list.php">Équipe et villes</a></li>
-        <li><a href="view/coach-list.php">Coach</a></li>
-        <li><a href="view/joueur-list.php">joueur</a></li>
-        </ul>
-
+        Section Menu
         </nav>
 {% endblock %}
 </header> 
@@ -29,14 +27,14 @@
     <body>
         <div id="content">{% block content %}{% endblock %}</div>
         <div id="footer">
-            {% block footer %}
+            
+
+{% block footer %}
                
 <div class="footer_menu">
 <ul>
  
-  <li><a href="view/team-list.php"> Ajouter ou supprimer une ville</a></li>
-  <li><a href="view/coach-list.php">Cliquez sur une equipe  pour voir la liste des joueurs par equipe</a></li>
-  <li><a href="view/joueur-list.php">Modifier ou effacer un joueur </a></li>
+ 
      {% endblock %}
 </ul>
 </div>

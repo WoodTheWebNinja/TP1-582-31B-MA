@@ -1,43 +1,42 @@
-<?php
- include("../templates/header.php"); 
+{% extends "layout.twig" %}
+{%block head %}  {{ parent() }}   {% endblock %}
 
-require_once "../class/Crud.php";
 
-$crud = new Crud;
-$select = $crud->selectCoach("coach","equipe");
 
-?>
 
+{% block title %}Index{% endblock %}
+{% block header %}
+    {{ parent() }}
+    
+{% endblock %}
+{% block content %}
+
+<h1>coach</h1>
 <div class="table_wrapper">
-<table class = "fl-table">
+        <table class = "fl-table">
 
-<h3> Cliquez sur une equipe  pour voir la liste des joueurs par equipe </h3>
-    <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Nom de famille</th>
-            <th>Equipe</th>
+            <tr>
+            <thead>
+                <th>Nom</th>
+                <th>Nom de famille</th>
+                <th>Equipe</th>
            
-        </tr>
-    </thead>
-    <tbody>
-<?php
-    foreach($select as $row){
-?>
-        <tr>
-            <td><?php echo $row["nom"]; ?></td>
-            <td><?php echo $row["nom_famille"]; ?></td>
-            <td><a href="joueur-par-equipe.php?idEquipe=<?php echo $row["idEquipe"];?>"><?php echo $row["nom_Equipe"]; ?></a></td>
-            
-           
-        </tr>
-<?php
-    }
-?>       
-    </tbody>
-</table>
-</div>
-<?php include("../templates/footer.php"); ?>
+            </thead>
+ 
+            </tr>
+            {% for coach in coachs %}
+            <tr>
+                <td>{{coach.nom }}</td>
+                <td>{{coach.nom_famille }}</td>
+                <td><a href="../equipe/show/{{coach.idEquipe}}">{{coach.nom_Equipe }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>    
+{% endblock %}
 
-</body>
-</html>
+
+{% block footer %}
+    {{ parent() }}
+    
+{% endblock %}

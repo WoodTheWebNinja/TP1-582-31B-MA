@@ -1,79 +1,69 @@
-<?php
- include("../templates/header.php"); 
-require_once "../class/Crud.php";
-$crud = new Crud;
-$crudVille = new Crud;
-$select = $crud->selectTeams("equipe","ville");
-$selectVille = $crudVille->select("ville");
+{% extends "layout.twig" %}
+{%block head %}  {{ parent() }}   {% endblock %}
 
 
-// Tableau liste villes et leur équipe de Basket-bal 
-?>
-<div class="table_wrapper">
-<table class = "fl-table">
-    <thead>
-        <tr>
-            <th>Nom Equipe </th>
-            <th>Nom ville </th>
-          
-           
-        </tr>
-    </thead>
-    <tbody>
-<?php
-    foreach($select as $row){
-?>
-        <tr>
-        <td><a href="joueur-par-equipe.php?idEquipe=<?php echo $row["idEquipe"];?>"><?php echo $row["nom_Equipe"]; ?></a></td>
-        <td><?php echo $row["ville"]; ?></td>
 
 
-        </tr>
-
-<?php
-    }
- echo "</tbody>" ;
- echo "</table>" ;
- echo "</div>" ;
- 
-// Tableau liste de villes 
-?>
-       
-  <div class="table_wrapper">
+{% block title %}Index{% endblock %}
+{% block header %}
+    {{ parent() }}
     
-  <table class = "fl-table">
-    <thead>
-        <tr>
-      
-            <th>Listes des ville </th>
-          
+{% endblock %}
+{% block content %}
+
+<h1>Equipe</h1>
+<div class="table_wrapper">
+        <table class = "fl-table">
+
+            <tr>
+            <thead>         
+                <th> Nom de l'Equipe</th>
+                <th>Nom de la ville </th>
            
-        </tr>
-    </thead>
-    <tbody>
-<?php
-    foreach($selectVille as $row){
-?>
-        <tr>
-        <td><?php echo $row["nom"]; ?></td>
-        </tr>
+            </thead>
+ 
+            </tr>
+            {% for equipes in equipe %}
+            <tr>
+                <td><a href="equipe/show/{{equipes.idEquipe}}">{{equipes.nom_Equipe }}</a></td>
+                <td>{{equipes.nom }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>    
 
-<?php
-    }
- echo "</tbody>" ;
- echo "</table>" ;
- echo "</div>" ;
+<div class="table_wrapper">
+        <table class = "fl-table">
 
-?>       
-
+            <tr>
+            <thead>         
+                <th> Listes des ville
+</th>
+      
+           
+            </thead>
+ 
+            </tr>
+            {% for ville in ville %}
+            <tr>
+                <td>{{ville.nom }}</td>
+              
+            </tr>
+            {% endfor %}
+        </table>
+</div>    
 
 
 <div class="button_wrapper"> 
-  <a href="ajouter-ville.php " class="buttoncta" >  Ajouter des Villes  </a> 
+  <a href=" equipe/create/" class="buttoncta" >  Ajouter des Villes  </a> 
 
   </div>
 
 
-</body>
-<?php include("../templates/footer.php"); ?>
-</html>
+{% endblock %}
+
+
+{% block footer %}
+    {{ parent() }}
+    
+{% endblock %}
